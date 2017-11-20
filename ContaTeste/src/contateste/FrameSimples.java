@@ -87,9 +87,14 @@ public class FrameSimples extends JFrame {
         @Override
         public void actionPerformed(ActionEvent event) {
             Banco banco = Banco.getInstance();
+            int flag;
             try {
-                banco.criaContaSimples(nome.getText(), Integer.parseInt(numero.getText()), Float.parseFloat(saldo.getText()));
-                dispose();
+                flag = banco.criaContaSimples(nome.getText(), Integer.parseInt(numero.getText()), Float.parseFloat(saldo.getText()));
+                if(flag == 0)
+                    dispose();
+                else{
+                    JOptionPane.showMessageDialog(null, "Conta ja existente!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (NumberFormatException number) {
                 JOptionPane.showMessageDialog(null, "Insira uma entrada valida!", "ERROR", JOptionPane.ERROR_MESSAGE);
             }

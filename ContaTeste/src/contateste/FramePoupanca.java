@@ -100,9 +100,14 @@ public class FramePoupanca extends JFrame {
         @Override
         public void actionPerformed(ActionEvent event) {
             Banco banco = Banco.getInstance();
+            int flag;
             try {
-                banco.criaContaPoupanca(nome.getText(), Integer.parseInt(numero.getText()), Float.parseFloat(saldo.getText()), Float.parseFloat(rendimento.getText()));
-                dispose();
+                flag = banco.criaContaPoupanca(nome.getText(), Integer.parseInt(numero.getText()), Float.parseFloat(saldo.getText()), Float.parseFloat(rendimento.getText()));
+                if(flag == 0)
+                    dispose();
+                else{
+                    JOptionPane.showMessageDialog(null, "Conta ja existente!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (NumberFormatException number) {
                 JOptionPane.showMessageDialog(null, "Insira uma entrada valida!", "ERROR", JOptionPane.ERROR_MESSAGE);
             }

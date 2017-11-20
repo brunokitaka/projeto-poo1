@@ -20,16 +20,34 @@ public class Banco {
         return instance;
     }
 
-    public void criaContaSimples(String nome, int numero, float saldo) {
+    public int criaContaSimples(String nome, int numero, float saldo) {
+        for(Conta c : contas){
+            if (c.getNumero() == numero) {
+                return -1;
+            }
+        }
         contas.add(new ContaSimples(nome, numero, saldo));
+        return 0;
     }
 
-    public void criaContaEspecial(String nome, int numero, float saldo, float limiteSaldo) {
+    public int criaContaEspecial(String nome, int numero, float saldo, float limiteSaldo) {
+        for(Conta c : contas){
+            if (c.getNumero() == numero) {
+                return -1;
+            }
+        }
         contas.add(new ContaEspecial(nome, numero, saldo, limiteSaldo));
+        return 0;
     }
 
-    public void criaContaPoupanca(String nome, int numero, float saldo, float rendimento) {
+    public int criaContaPoupanca(String nome, int numero, float saldo, float rendimento) {
+        for(Conta c : contas){
+            if (c.getNumero() == numero) {
+                return -1;
+            }
+        }
         contas.add(new ContaPoupanca(nome, numero, saldo, rendimento));
+        return 0;
     }
 
     public float consulta(int n) {
